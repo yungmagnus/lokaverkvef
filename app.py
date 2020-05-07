@@ -15,8 +15,11 @@ config = {
     "measurementId": "G-VYQPF38Z5M"
 }
 
+
 fb = pyrebase.initialize_app(config)
 db = fb.database()
+# innsetning db til að fá dálkana keyra bara einu sinni
+#db.child("bill").push({"nr":"abc12", "tegund":"Volvo","utegund":"Lungo", "argerd":"2020","akstur":"1500"})
 
 
 @app.route("/")
@@ -38,9 +41,11 @@ def innskra():
     lst = list(u.items())
 
     return render_template("innskra.html", bilar=lst)
-@app.route("nyskra")
+
+@app.route("/nyskra")  #vantaði /
 def nyskra():
     return render_template("register.html")
+
 @app.route("/donyskra", methods=["GET","POST"])
 def doregister():
     skrnr = []
@@ -75,3 +80,8 @@ def breytaeyda():
             return render_template("updated.html", nr = request.form["nr"])
     else:
         return render_template("no_method.html")
+
+# það þarf alltaf að ræsa appið
+
+if __name__ == "__main__":
+	app.run(debug=True)
