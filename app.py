@@ -16,8 +16,8 @@ config = {
 
 fb = pyrebase.initialize_app(config)
 db = fb.database()
-# innsetning db = keyra dálkana inn einu sinni
-#db.child("bill").push({"nr":"abc12", "tegund":"Volvo","utegund":"Lungo", "argerd":"2020","akstur":"1500"})
+
+db.child("bill").push({"nr":"abc12","tegund":"Volvo","utegund":"Lungo","argerd":"2020","akstur":"1500"})
 
 @app.route("/")
 def index():
@@ -39,11 +39,9 @@ def innskra():
     lst = list(u.items())
 
     return render_template("innskra.html", bilar=lst)
-
-@app.route("/nyskra")  #vantaði /
+@app.route("/nyskra")
 def nyskra():
     return render_template("register.html")
-
 @app.route("/donyskra", methods=["GET","POST"])
 def doregister():
     skrnr = []
@@ -67,7 +65,6 @@ def doregister():
             return render_template("userexists.html", nr = nr)
     else:
         return render_template("no_method.html")
-
 @app.route("/breytaeyda", methods=["POST"])
 def breytaeyda():
     if request.method == "POST":
@@ -80,7 +77,5 @@ def breytaeyda():
     else:
         return render_template("no_method.html")
 
-# það þarf alltaf að ræsa appið
-
-if __name__ == "__main__":
-	app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True, use_reloader=True)
