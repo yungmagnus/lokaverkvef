@@ -3,7 +3,6 @@ import pyrebase
 
 app = Flask(__name__)
 
-
 config = {
     "apiKey": "AIzaSyCPrZZdVIa72dHvGIN020834wfVRmhR-I4",
     "authDomain": "lokaverk-17eb5.firebaseapp.com",
@@ -22,10 +21,11 @@ db = fb.database()
 
 @app.route("/")
 def index():
-    u = db.child("bill").get.val()
+    u = db.child("bill").get().val()
     lst = list(u.items())
+    # tók út index skráninguna (þú breytir því)
+    return render_template("innskra.html", bilar=lst)
 
-    return render_template("index.html", bilar=lst)
 @app.route("/bill/<id>")
 def bill(id):
     b = db.child("bill").child(id).get().val()

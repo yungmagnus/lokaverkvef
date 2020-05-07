@@ -1,11 +1,11 @@
-{% extends "sub-layout.html" %}
+{% extends "layout.html" %}
 
 {% block title %}
     <title>Bifreið uppfærð</title>
 {% endblock %}
 
 {% block redir %}
-    <meta http-equiv="refresh" content="2; url{{ url_for('innskra') }})">
+<meta http-equiv="refresh"content="2; url={{ url_for('index') }}"><!--ath var innskra-->
 {% endblock %}
 
 {% block content %}

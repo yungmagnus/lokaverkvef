@@ -1,13 +1,12 @@
-{% extends "sub-layout.html" %}
+{% extends "layout.html" %}
 
 {% block title %}
     <title>Númer til</title>
 {% endblock %}
 
-{% block redir %}+
-    <meta http-equiv="refresh" content="2; url{{ url_for('innskra') }})">
+{% block redir %}
+<meta http-equiv="refresh"content="2; url={{ url_for('index') }}"><!--ath var innskra-->
 {% endblock %}
-
 
 {% block content %}
     <h2 class="error">Skráninganúmerið {{nr}} er til í gagnagrunni.</h2>
